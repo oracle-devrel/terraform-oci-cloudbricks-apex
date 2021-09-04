@@ -62,7 +62,7 @@ resource "null_resource" "ORDSConfig" {
     destination = "/home/opc/${var.ATP_tde_wallet_zip_file}"
   }
 
-    provisioner "remote-exec" {
+  provisioner "remote-exec" {
     connection {
       type        = "ssh"
       user        = "opc"
@@ -77,7 +77,7 @@ resource "null_resource" "ORDSConfig" {
       "sudo wget https://objectstorage.sa-santiago-1.oraclecloud.com/p/51_sn_bDZ0ovpXz5RbyT51NPPKr_E3VbWbGM3DDlg3hA2clmUxUW9P8s3AWNLZq4/n/idhkis4m3p5e/b/Shared_Bucket/o/apex_20.2.zip -P /opt/oracle/ords/",
       "sudo chown oracle:oinstall /opt/oracle/ords/apex_20.2.zip",
       "sudo su - oracle -c 'unzip -q /opt/oracle/ords/apex_20.2.zip -d /opt/oracle/ords/'",
-      
+
     ]
   }
 

@@ -8,3 +8,7 @@
 output "SQLDeveloperPublicURL" {
   value = "http://${oci_load_balancer.LoadBalancer.ip_addresses[0]}/ords/sql-developer"
 }
+
+output "APEXPublicURL" {
+  value = "http://${oci_load_balancer.LoadBalancer.ip_addresses[0]}/ords/apex"
+}

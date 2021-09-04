@@ -28,8 +28,8 @@ resource "oci_core_instance" "Compute" {
   dynamic "shape_config" {
     for_each = var.is_flex_shape ? [1] : []
     content {
-      memory_in_gbs = var.instance_flex_shape_memory
-      ocpus         = var.instance_flex_shape_ocpus
+      memory_in_gbs = var.instance_shape_config_memory_in_gbs
+      ocpus         = var.instance_shape_config_ocpus
     }
   }
 

@@ -145,6 +145,52 @@ variable "lbaas_display_name" {
 variable "lbaas_subnet_cidr_block" {
   description = "CIDR Block of the subnet where the LBaaS is located at"
 }
+
+variable "lbaas_ca_cert_is_path" {
+  description = "Declared if the certificate LBaaS is in a path or if it is string"
+  default     = true
+
+}
+
+variable "lbaas_pvt_key_is_path" {
+  description = "Declares if the Private Key of LBaaS is in a path or string"
+  default     = true
+
+}
+
+variable "lbaas_ssl_cert_is_path" {
+  description = "Declares if the public certificate is in a path or string"
+  default     = true
+
+}
+
+variable "certificate_bundle_display_name" {
+  description = "Display name of certificate associated to LBaaS"
+  default     = "certificate"
+
+}
+
+variable "lbaas_ca_cert" {
+  description = "Load Balancer ca certificate"
+  default     = ""
+}
+
+variable "certificate_private_key" {
+  description = "Load Balancer Private Key"
+  default     = ""
+
+}
+
+variable "lbaas_ssl_cert" {
+  description = "Load Balancer Public Certificate"
+  default     = ""
+}
+
+variable "verify_peer_certificate" {
+  description = "Defines if peer verification is enabled"
+  default     = true
+
+}
 variable "ATP_password" {}
 variable "availability_domain" {
   default = ""
@@ -190,14 +236,6 @@ variable "instance_os" {
 variable "linux_os_version" {
   description = "Operating system version for all Linux instances"
   default     = "7.9"
-}
-
-variable "instance_flex_shape_ocpus" {
-  default = 1
-}
-
-variable "instance_flex_shape_memory" {
-  default = 10
 }
 
 variable "ATP_private_endpoint" {
