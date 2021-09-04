@@ -156,7 +156,7 @@ ATP_network_subnet_name               = "database_subnet"
   - Certificates are suggested to be set on directory `certs`. A sample script is provided to generate sample Self Signed Certificates. 
     - **No production environment must be implemented with Self Signed Certificates. Be sure to purschase a valid certificate with your preferred CA**
     - Self signed certificates are passed on for demonstration purposes. 
-    - If using Self Signed certs, the variable `verify_peer_certificate` must be set to `false`
+    - If using Self Signed certs, the variable `verify_peer_certificate` must be set to `false`. In any other case, this will fail upon creation, as peer verification checks the validity of a certificate against an actual CA Authority. If certificates are real, then you can set this value to `true` or drop it from `system.tfvars` file as it defaults to `true`
     - ORDS redirection to APEX won't work until certificates are in place. This is because SSL Termination is configured on Load Balancer and ORDS. If you decide to use plain connection on top of ORDS, only access permitted is to sql-developer. All other redirects will fail because of lack of SSL Certificates
   - Wallet file used to interconnect ORDS with ATP will be self created upon runtime. If you require to save and store this, be sure to grab this file from the front end. 
   - ATP Password is a minimum 12 character alphanumeric password
