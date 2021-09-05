@@ -172,18 +172,18 @@ variable "certificate_bundle_display_name" {
 
 variable "lbaas_ca_cert" {
   description = "Load Balancer ca certificate"
-  default     = ""
+  default     = null
 }
 
 variable "certificate_private_key" {
   description = "Load Balancer Private Key"
-  default     = ""
+  default     = null
 
 }
 
 variable "lbaas_ssl_cert" {
   description = "Load Balancer Public Certificate"
-  default     = ""
+  default     = null
 }
 
 variable "verify_peer_certificate" {
