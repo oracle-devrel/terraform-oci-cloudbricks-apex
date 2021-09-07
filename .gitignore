@@ -15,6 +15,10 @@ promote_to_qa.sh
 provider.tf 
 remove_tag.sh
 **/ssh_keys/*
+*.crt
+*.csr
+*.key
+*.srl 
 
 override.tf
 override.tf.json

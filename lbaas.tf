@@ -52,6 +52,31 @@ resource "oci_load_balancer_listener" "HTTPListener" {
   protocol                 = "HTTP"
 }
 
+resource "oci_load_balancer_listener" "HTTPSListener" {
+  load_balancer_id         = oci_load_balancer.LoadBalancer.id
+  name                     = "https"
+  default_backend_set_name = oci_load_balancer_backend_set.BackendSet.name
+  port                     = 443
+  protocol                 = "HTTP"
+  ssl_configuration {
+    certificate_name        = oci_load_balancer_certificate.LoadBalancerCertificate.certificate_name
+    verify_peer_certificate = var.verify_peer_certificate
+  }
+}
+
+resource "oci_load_balancer_certificate" "LoadBalancerCertificate" {
+
+  certificate_name = var.certificate_bundle_display_name
+  load_balancer_id = oci_load_balancer.LoadBalancer.id
+
+  ca_certificate     = var.lbaas_ca_cert_is_path ? file(var.lbaas_ca_cert) : var.lbaas_ca_cert
+  private_key        = var.lbaas_pvt_key_is_path ? file(var.certificate_private_key) : var.certificate_private_key
+  public_certificate = var.lbaas_ssl_cert_is_path ? file(var.lbaas_ssl_cert) : var.lbaas_ssl_cert
+  lifecycle {
+    create_before_destroy = false
+  }
+}
+
 resource "oci_load_balancer_backend" "Backend" {
   count            = var.num_instances
   load_balancer_id = oci_load_balancer.LoadBalancer.id
