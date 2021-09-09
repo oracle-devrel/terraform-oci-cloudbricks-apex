@@ -65,6 +65,7 @@ verify_peer_certificate   = false
 
 
 
+ATP_instance_compartment_name         = "MY_ARTIFACT_COMPARTMENT"
 ATP_database_cpu_core_count           = 1
 ATP_database_data_storage_size_in_tbs = 1
 ATP_database_db_name                  = "ATP_APEX"
@@ -125,7 +126,7 @@ lbaas_ssl_cert            = "./certs/loadbalancer.crt"
 verify_peer_certificate   = false
 
 
-
+ATP_instance_compartment_name         = "MY_ARTIFACT_COMPARTMENT"
 ATP_database_cpu_core_count           = 1
 ATP_database_data_storage_size_in_tbs = 1
 ATP_database_db_name                  = "ATP_APEX"
@@ -244,6 +245,7 @@ No modules.
 | [oci_core_subnets.LBAASSUBNET](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_subnets) | data source |
 | [oci_core_vcns.VCN](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_vcns) | data source |
 | [oci_core_volume_backup_policies.BACKUPPOLICYBOOTVOL](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/core_volume_backup_policies) | data source |
+| [oci_identity_compartments.ATPCOMPARTMENTS](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_compartments) | data source |
 | [oci_identity_compartments.COMPARTMENTS](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_compartments) | data source |
 | [oci_identity_compartments.NWCOMPARTMENTS](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/data-sources/identity_compartments) | data source |
 
@@ -260,6 +262,7 @@ No modules.
 | <a name="input_ATP_database_display_name"></a> [ATP\_database\_display\_name](#input\_ATP\_database\_display\_name) | n/a | `string` | `"ATP"` | no |
 | <a name="input_ATP_database_freeform_tags"></a> [ATP\_database\_freeform\_tags](#input\_ATP\_database\_freeform\_tags) | n/a | `map` | <pre>{<br>  "Owner": "ATP"<br>}</pre> | no |
 | <a name="input_ATP_database_license_model"></a> [ATP\_database\_license\_model](#input\_ATP\_database\_license\_model) | n/a | `string` | `"LICENSE_INCLUDED"` | no |
+| <a name="input_ATP_instance_compartment_name"></a> [ATP\_instance\_compartment\_name](#input\_ATP\_instance\_compartment\_name) | Defines the compartment name where the ATP infrastructure will be created | `any` | n/a | yes |
 | <a name="input_ATP_network_subnet_name"></a> [ATP\_network\_subnet\_name](#input\_ATP\_network\_subnet\_name) | ATP Subnet Name | `any` | n/a | yes |
 | <a name="input_ATP_password"></a> [ATP\_password](#input\_ATP\_password) | n/a | `any` | n/a | yes |
 | <a name="input_ATP_private_endpoint"></a> [ATP\_private\_endpoint](#input\_ATP\_private\_endpoint) | n/a | `bool` | `true` | no |
@@ -270,7 +273,7 @@ No modules.
 | <a name="input_availability_domain_name"></a> [availability\_domain\_name](#input\_availability\_domain\_name) | n/a | `string` | `""` | no |
 | <a name="input_bkp_policy_boot_volume"></a> [bkp\_policy\_boot\_volume](#input\_bkp\_policy\_boot\_volume) | Describes the backup policy attached to the boot volume | `string` | `"gold"` | no |
 | <a name="input_certificate_bundle_display_name"></a> [certificate\_bundle\_display\_name](#input\_certificate\_bundle\_display\_name) | Display name of certificate associated to LBaaS | `string` | `"certificate"` | no |
-| <a name="input_certificate_private_key"></a> [certificate\_private\_key](#input\_certificate\_private\_key) | Load Balancer Private Key | `string` | `""` | no |
+| <a name="input_certificate_private_key"></a> [certificate\_private\_key](#input\_certificate\_private\_key) | Load Balancer Private Key | `any` | `null` | no |
 | <a name="input_compute_availability_domain_list"></a> [compute\_availability\_domain\_list](#input\_compute\_availability\_domain\_list) | Defines the availability domain list where OCI artifact will be created. This is a numeric value greater than 0 | `list(any)` | n/a | yes |
 | <a name="input_compute_display_name_base"></a> [compute\_display\_name\_base](#input\_compute\_display\_name\_base) | Defines the compute and hostname Label for created compute | `any` | n/a | yes |
 | <a name="input_compute_network_subnet_cidr_block"></a> [compute\_network\_subnet\_cidr\_block](#input\_compute\_network\_subnet\_cidr\_block) | CIDR Block of the subnet where the computes are located at | `any` | n/a | yes |
@@ -286,12 +289,12 @@ No modules.
 | <a name="input_is_flex_shape"></a> [is\_flex\_shape](#input\_is\_flex\_shape) | Boolean that describes if the shape is flex or not | `bool` | `false` | no |
 | <a name="input_label_zs"></a> [label\_zs](#input\_label\_zs) | Auxiliary variable to concatenate with compute number | `list(any)` | <pre>[<br>  "0",<br>  ""<br>]</pre> | no |
 | <a name="input_lb_shape"></a> [lb\_shape](#input\_lb\_shape) | n/a | `string` | `"flexible"` | no |
-| <a name="input_lbaas_ca_cert"></a> [lbaas\_ca\_cert](#input\_lbaas\_ca\_cert) | Load Balancer ca certificate | `string` | `""` | no |
+| <a name="input_lbaas_ca_cert"></a> [lbaas\_ca\_cert](#input\_lbaas\_ca\_cert) | Load Balancer ca certificate | `any` | `null` | no |
 | <a name="input_lbaas_ca_cert_is_path"></a> [lbaas\_ca\_cert\_is\_path](#input\_lbaas\_ca\_cert\_is\_path) | Declared if the certificate LBaaS is in a path or if it is string | `bool` | `true` | no |
 | <a name="input_lbaas_display_name"></a> [lbaas\_display\_name](#input\_lbaas\_display\_name) | Display Name for Load Balancer | `any` | n/a | yes |
 | <a name="input_lbaas_network_subnet_name"></a> [lbaas\_network\_subnet\_name](#input\_lbaas\_network\_subnet\_name) | LBaaS Subnet Name | `any` | n/a | yes |
 | <a name="input_lbaas_pvt_key_is_path"></a> [lbaas\_pvt\_key\_is\_path](#input\_lbaas\_pvt\_key\_is\_path) | Declares if the Private Key of LBaaS is in a path or string | `bool` | `true` | no |
-| <a name="input_lbaas_ssl_cert"></a> [lbaas\_ssl\_cert](#input\_lbaas\_ssl\_cert) | Load Balancer Public Certificate | `string` | `""` | no |
+| <a name="input_lbaas_ssl_cert"></a> [lbaas\_ssl\_cert](#input\_lbaas\_ssl\_cert) | Load Balancer Public Certificate | `any` | `null` | no |
 | <a name="input_lbaas_ssl_cert_is_path"></a> [lbaas\_ssl\_cert\_is\_path](#input\_lbaas\_ssl\_cert\_is\_path) | Declares if the public certificate is in a path or string | `bool` | `true` | no |
 | <a name="input_lbaas_subnet_cidr_block"></a> [lbaas\_subnet\_cidr\_block](#input\_lbaas\_subnet\_cidr\_block) | CIDR Block of the subnet where the LBaaS is located at | `any` | n/a | yes |
 | <a name="input_linux_compute_instance_compartment_name"></a> [linux\_compute\_instance\_compartment\_name](#input\_linux\_compute\_instance\_compartment\_name) | Defines the compartment name where the infrastructure will be created | `any` | n/a | yes |

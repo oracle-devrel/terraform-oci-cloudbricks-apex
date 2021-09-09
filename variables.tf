@@ -288,4 +288,8 @@ variable "ATP_data_guard_enabled" {
   default = false
 }
 
+variable "ATP_instance_compartment_name" {
+  description = "Defines the compartment name where the ATP infrastructure will be created"
+}
+
 /********** Brick Variables **********/

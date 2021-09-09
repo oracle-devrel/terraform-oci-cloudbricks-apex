@@ -8,7 +8,7 @@
 
 resource "oci_database_autonomous_database" "ATPdatabase" {
   admin_password           = var.ATP_password
-  compartment_id           = local.compartment_id
+  compartment_id           = local.ATP_compartment_id
   cpu_core_count           = var.ATP_database_cpu_core_count
   data_storage_size_in_tbs = var.ATP_database_data_storage_size_in_tbs
   db_name                  = var.ATP_database_db_name

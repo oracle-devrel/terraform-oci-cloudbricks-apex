@@ -30,6 +30,15 @@ data "oci_identity_compartments" "COMPARTMENTS" {
   }
 }
 
+data "oci_identity_compartments" "ATPCOMPARTMENTS" {
+  compartment_id            = var.tenancy_ocid
+  compartment_id_in_subtree = true
+  filter {
+    name   = "name"
+    values = [var.ATP_instance_compartment_name]
+  }
+}
+
 data "oci_identity_compartments" "NWCOMPARTMENTS" {
   compartment_id            = var.tenancy_ocid
   compartment_id_in_subtree = true
@@ -98,6 +107,8 @@ locals {
   # Compartment OCID Local Accessor
   compartment_id    = lookup(data.oci_identity_compartments.COMPARTMENTS.compartments[0], "id")
   nw_compartment_id = lookup(data.oci_identity_compartments.NWCOMPARTMENTS.compartments[0], "id")
+
+  ATP_compartment_id = lookup(data.oci_identity_compartments.ATPCOMPARTMENTS.compartments[0], "id")
 
   # VCN OCID Local Accessor
   vcn_id = lookup(data.oci_core_vcns.VCN.virtual_networks[0], "id")
