@@ -294,6 +294,7 @@ variable "ATP_instance_compartment_name" {
 
 variable "apex_version" {
   description = "Defines the current static content version of apex"
+  default = "21.1.2"
   
 }
 
