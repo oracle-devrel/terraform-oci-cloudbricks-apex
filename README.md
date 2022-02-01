@@ -103,6 +103,7 @@ ssh_public_is_path               = true
 ssh_private_is_path              = true
 compute_availability_domain_list = ["aBCD:foo-REGION-1-AD-1", "aBCD:foo-REGION-1-AD-2","aBCD:foo-REGION-1-AD-3" ]
 
+apex_version                            = "21.1.3"
 compute_network_subnet_name             = "compute_subnet"
 compute_network_subnet_cidr_block       = "a.s.d.f/HH"
 fault_domain_name                       = ["FAULT-DOMAIN-1", "FAULT-DOMAIN-2", "FAULT-DOMAIN-3"]
