@@ -161,6 +161,7 @@ ATP_network_subnet_name               = "database_subnet"
     - ORDS redirection to APEX won't work until certificates are in place. This is because SSL Termination is configured on Load Balancer and ORDS. If you decide to use plain connection on top of ORDS, only access permitted is to sql-developer. All other redirects will fail because of lack of SSL Certificates
   - Wallet file used to interconnect ORDS with ATP will be self created upon runtime. If you require to save and store this, be sure to grab this file from the front end. 
   - ATP Password is a minimum 12 character alphanumeric password
+  - The variable `apex_version` explicitly sets the static content of the APEX release in place on ORDS. This has to be compliant with the ATP Version currently running APEX
 
 ---
 ## Sample provider
@@ -199,10 +200,10 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | 3.1.0 |
-| <a name="provider_oci"></a> [oci](#provider\_oci) | 4.42.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_oci"></a> [oci](#provider\_oci) | n/a |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
 
@@ -268,6 +269,7 @@ No modules.
 | <a name="input_ATP_private_endpoint"></a> [ATP\_private\_endpoint](#input\_ATP\_private\_endpoint) | n/a | `bool` | `true` | no |
 | <a name="input_ATP_private_endpoint_label"></a> [ATP\_private\_endpoint\_label](#input\_ATP\_private\_endpoint\_label) | n/a | `string` | `"ATPPrivateEndpoint"` | no |
 | <a name="input_ATP_tde_wallet_zip_file"></a> [ATP\_tde\_wallet\_zip\_file](#input\_ATP\_tde\_wallet\_zip\_file) | n/a | `string` | `"tde_wallet_aTFdb.zip"` | no |
+| <a name="input_apex_version"></a> [apex\_version](#input\_apex\_version) | Defines the current static content version of apex | `any` | n/a | yes |
 | <a name="input_assign_public_ip_flag"></a> [assign\_public\_ip\_flag](#input\_assign\_public\_ip\_flag) | Defines either machine will have or not a Public IP assigned. All Pvt networks this variable must be false | `bool` | `false` | no |
 | <a name="input_availability_domain"></a> [availability\_domain](#input\_availability\_domain) | n/a | `string` | `""` | no |
 | <a name="input_availability_domain_name"></a> [availability\_domain\_name](#input\_availability\_domain\_name) | n/a | `string` | `""` | no |
